@@ -55,6 +55,7 @@ orcaslicer_add_cmake_project(OCCT
     PATCH_COMMAND git apply ${OCCT_DIRECTORY_FLAG} --verbose --ignore-space-change --whitespace=fix
         ${CMAKE_CURRENT_LIST_DIR}/0001-BRepMesh-seam-pcurve-at-edge-parameter.patch
         ${CMAKE_CURRENT_LIST_DIR}/0002-BRepGraph-MSVC-ARM64-ICE-workaround.patch
+        ${_occt_exception_patch}
     #DEPENDS dep_Boost
     CMAKE_ARGS
         -DCMAKE_CXX_STANDARD=17
