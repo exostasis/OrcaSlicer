@@ -24,6 +24,12 @@
 	"slow_down_min_speed": [
 		"30"
 	],
+	"filament_retraction_length": [
+		"1"
+	],
+	"filament_retraction_minimum_travel": [
+		"nil"
+	],
 	"compatible_printers": [
 		"Bambu Lab H3C 0.6 nozzle"
 	]

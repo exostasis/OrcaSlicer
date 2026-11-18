@@ -1,7 +1,7 @@
 {
 	"name": "Bambulab",
 	"url": "http://www.bambulab.com/Parameters/vendor/BBL.json",
-	"version": "02.08.00.18",
+	"version": "02.08.00.19",
 	"force_update": "0",
 	"description": "the initial version of BBL configurations",
 	"machine_model_list": [
@@ -450,6 +450,10 @@
 		{
 			"name": "Generic TPU for AMS @BBL H3C",
 			"sub_path": "filament/Generic TPU for AMS @BBL H3C.json"
+		},
+		{
+			"name": "Generic TPU(2.85mm) @BBL H3C",
+			"sub_path": "filament/Generic TPU(2.85mm) @BBL H3C.json"
 		},
 		{
 			"name": "Bambu ABS @base",
@@ -1218,6 +1222,14 @@
 		{
 			"name": "Generic TPU @BBL H3C 0.8 nozzle",
 			"sub_path": "filament/Generic TPU @BBL H3C 0.8 nozzle.json"
+		},
+		{
+			"name": "Generic TPU(2.85mm) @BBL H3C 0.6 nozzle",
+			"sub_path": "filament/Generic TPU(2.85mm) @BBL H3C 0.6 nozzle.json"
+		},
+		{
+			"name": "Generic TPU(2.85mm) @BBL H3C 0.8 nozzle",
+			"sub_path": "filament/Generic TPU(2.85mm) @BBL H3C 0.8 nozzle.json"
 		},
 		{
 			"name": "Bambu ABS @BBL A1",
