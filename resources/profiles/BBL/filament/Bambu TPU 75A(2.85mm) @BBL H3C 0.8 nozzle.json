@@ -24,6 +24,21 @@
 	"slow_down_min_speed": [
 		"30"
 	],
+	"filament_retraction_length": [
+		"0.8"
+	],
+	"filament_retraction_speed": [
+		"5"
+	],
+	"filament_deretraction_speed": [
+		"30"
+	],
+	"filament_retraction_minimum_travel": [
+		"nil"
+	],
+	"filament_z_hop_types": [
+		"Spiral Lift"
+	],
 	"compatible_printers": [
 		"Bambu Lab H3C 0.8 nozzle"
 	]

@@ -1,5 +1,5 @@
 {
-  "bambustudio_commit": "66e405477",
+  "bambustudio_commit": "930fe93",
   "filaments": {
     "OF0UJcb6": {
       "bambu_id": "GFG60",
@@ -301,6 +301,12 @@
       "type": "PETG-CF",
       "vendor": "Bambu Lab"
     },
+    "OFUF68Wv": {
+      "bambu_id": "GFA20",
+      "name": "Bambu PLA Palette",
+      "type": "PLA",
+      "vendor": "Bambu Lab"
+    },
     "OFUanySo": {
       "bambu_id": "GFA06",
       "name": "Bambu PLA Silk+",
@@ -535,6 +541,12 @@
       "type": "PLA",
       "vendor": "eSUN"
     },
+    "OFqlaiXi": {
+      "bambu_id": "GFU97",
+      "name": "Generic TPU(2.85mm)",
+      "type": "TPU",
+      "vendor": "Generic"
+    },
     "OFrKLeE3": {
       "bambu_id": "GFA02",
       "name": "Bambu PLA Metal",
@@ -608,6 +620,6 @@
       "vendor": "Bambu Lab"
     }
   },
-  "generated": "2026-09-04",
+  "generated": "2026-11-16",
   "source": "https://github.com/bambulab/BambuStudio"
 }

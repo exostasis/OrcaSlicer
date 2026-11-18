@@ -55,7 +55,7 @@
 		"0"
 	],
 	"filament_preheat_temperature_delta": [
-		"0"
+		"10"
 	],
 	"filament_tower_interface_pre_extrusion_dist": [
 		"10"
@@ -269,9 +269,6 @@
 	"volumetric_speed_coefficients": [
 		"-72.1736 -8.8086 10.6201 29.6592 9.9286 -3.3920"
 	],
-	"compatible_printers": [
-		"Bambu Lab H3C 0.4 nozzle"
-	],
 	"filament_start_gcode": [
 		"; filament start gcode\n"
 	],
@@ -289,5 +286,26 @@
 	],
 	"filament_extruder_id": [
 		"1"
+	],
+	"filament_retraction_length": [
+		"2"
+	],
+	"filament_retraction_speed": [
+		"10"
+	],
+	"filament_deretraction_speed": [
+		"10"
+	],
+	"filament_retraction_minimum_travel": [
+		"5"
+	],
+	"filament_wipe": [
+		"1"
+	],
+	"filament_z_hop_types": [
+		"Auto Lift"
+	],
+	"compatible_printers": [
+		"Bambu Lab H3C 0.4 nozzle"
 	]
 }
