@@ -318,11 +318,13 @@ namespace Slic3r
             extder_obj.SetExtId(njon["id"].get<int>());
 
             extder_obj.m_filam_bak.clear();
-            const json& filam_bak_items = njon["filam_bak"];
-            for (const auto& filam_bak_item : filam_bak_items)
+            // The H3C omits filam_bak, and operator[] on a const json with a missing key is undefined behavior.
+            if (njon.contains("filam_bak"))
             {
-                const auto& filam_bak_val = filam_bak_item.get<int>();
-                extder_obj.m_filam_bak.emplace_back(filam_bak_val);
+                for (const auto& filam_bak_item : njon["filam_bak"])
+                {
+                    extder_obj.m_filam_bak.emplace_back(filam_bak_item.get<int>());
+                }
             }
 
             extder_obj.m_ext_has_filament = (DevUtil::get_flag_bits(njon["info"].get<int>(), 1) != 0);
