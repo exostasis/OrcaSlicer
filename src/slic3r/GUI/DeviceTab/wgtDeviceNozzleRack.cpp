@@ -288,8 +288,11 @@ void wgtDeviceNozzleRackArea::CreateGui()
     m_hotends_sizer = new wxBoxSizer(wxVERTICAL);
     m_arow_nozzles_box = CreateNozzleBox( { 0, 2, 4});
     m_brow_nozzles_box = CreateNozzleBox( { 1, 3, 5});
+    m_crow_nozzles_box = CreateNozzleBox( { 6, 7, 8});
+    m_crow_nozzles_box->Show(false);
     m_hotends_sizer->Add(m_arow_nozzles_box);
     m_hotends_sizer->Add(m_brow_nozzles_box);
+    m_hotends_sizer->Add(m_crow_nozzles_box);
     hotends_rack_sizer->Add(m_hotends_sizer, 0, wxLEFT, FromDIP(8));
 
     // Rack
@@ -460,7 +463,17 @@ void wgtDeviceNozzleRackArea::UpdateNozzleItems(const std::unordered_map<int, wg
                 m_hotends_sizer->Add(m_arow_nozzles_box);
                 m_hotends_sizer->Add(m_brow_nozzles_box);
             }
+            m_hotends_sizer->Add(m_crow_nozzles_box);
         }
+    }
+
+    const bool show_crow = nozzle_rack->GetSlotCount() > 6;
+    if (m_crow_nozzles_box->IsShown() != show_crow)
+    {
+        m_crow_nozzles_box->Show(show_crow);
+        m_panel_content->Layout();
+        Layout();
+        if (GetParent()) GetParent()->Layout();
     }
 }
 

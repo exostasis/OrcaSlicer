@@ -59,6 +59,7 @@ class wgtDeviceNozzleRackUprade : public wxPanel
 {
 public:
     wgtDeviceNozzleRackUprade(wxWindow* parent,
+        int slot_count,
         wxWindowID id = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
@@ -70,7 +71,7 @@ public:
     void Rescale();
 
 private:
-    void CreateGui();
+    void CreateGui(int slot_count);
 
     void OnBtnReadAll(wxCommandEvent& e);
 
