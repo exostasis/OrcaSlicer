@@ -138,6 +138,7 @@ private:
     wxBoxSizer* m_hotends_sizer;
     StaticBox* m_arow_nozzles_box;
     StaticBox* m_brow_nozzles_box;
+    StaticBox* m_crow_nozzles_box; // slots 7-9, shown only on racks that report them (H3C)
     std::unordered_map<int, wgtDeviceNozzleRackNozzleItem*> m_nozzle_items;
 
     wgtDeviceNozzleRackPos* m_rack_pos_panel;

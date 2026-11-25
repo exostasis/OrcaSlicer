@@ -50,7 +50,7 @@ wxDEFINE_EVENT(wxEVT_NOZZLE_JUMP_UPGRADE, wxCommandEvent);
 wgtDeviceNozzleRackUpgradeDlg::wgtDeviceNozzleRackUpgradeDlg(wxWindow* parent, const std::shared_ptr<DevNozzleRack> rack)
     : DPIDialog(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    m_rack_upgrade_panel = new wgtDeviceNozzleRackUprade(this);
+    m_rack_upgrade_panel = new wgtDeviceNozzleRackUprade(this, rack ? rack->GetSlotCount() : 6);
     m_rack_upgrade_panel->UpdateRackInfo(rack);
 
     Bind(wxEVT_NOZZLE_JUMP_UPGRADE, [this](wxCommandEvent&) {
@@ -77,16 +77,17 @@ void wgtDeviceNozzleRackUpgradeDlg::on_dpi_changed(const wxRect& suggested_rect)
 }
 
 wgtDeviceNozzleRackUprade::wgtDeviceNozzleRackUprade(wxWindow* parent,
+                                                     int slot_count,
                                                      wxWindowID id,
                                                      const wxPoint& pos,
                                                      const wxSize& size,
                                                      long style)
     : wxPanel(parent, id, pos, size, style)
 {
-    CreateGui();
+    CreateGui(slot_count);
 }
 
-void wgtDeviceNozzleRackUprade::CreateGui()
+void wgtDeviceNozzleRackUprade::CreateGui(int slot_count)
 {
     SetBackgroundColour(*wxWHITE);
 
@@ -111,14 +112,14 @@ void wgtDeviceNozzleRackUprade::CreateGui()
     m_extruder_nozzle_item->SetExtruderNozzleId(MAIN_EXTRUDER_ID);
 
     main_sizer->Add(m_extruder_nozzle_item, 0, wxEXPAND | wxALL, FromDIP(12));
-    for (int id = 0; id < 6; id ++)
+    for (int id = 0; id < slot_count; id ++)
     {
         auto item = new wgtDeviceNozzleRackHotendUpdate(this, wxString::Format("%d", id + 1));
         item->SetRackNozzleId(id);
         m_nozzle_items[id] = item;
 
         main_sizer->Add(item, 0, wxEXPAND | wxALL, FromDIP(12));
-        if (id < 5)
+        if (id < slot_count - 1)
         {
             wxPanel* separator = new wxPanel(this);
             separator->SetMaxSize(wxSize(-1, FromDIP(1)));

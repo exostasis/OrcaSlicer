@@ -6,6 +6,7 @@
 #include "DevNozzleSystem.h"
 #include "DevFirmware.h"
 
+#include <algorithm>
 #include <map>
 
 // wx
@@ -73,6 +74,8 @@ public:
 
     DevNozzle GetNozzle(int idx) const;
     const std::map<int, DevNozzle>& GetRackNozzles() const { return m_rack_nozzles; }
+    // The H2C rack has 6 slots; larger racks (the H3C has 9) are sized by the highest slot the printer reports.
+    int GetSlotCount() const { return m_rack_nozzles.empty() ? 6 : std::max(6, m_rack_nozzles.rbegin()->first + 1); }
 
     // status
     bool HasUnreliableNozzles() const;
