@@ -153,6 +153,10 @@ namespace Slic3r
                 {
                     tray_index = ams_id + tray_id;
                 }
+                else if (ams_type == DevAmsType::ZMULTI_A || ams_type == DevAmsType::ZMULTI_B)
+                {
+                    tray_index = ams->second->GetTrayBitIndex(tray_id);
+                }
                 else
                 {
                     assert(0);
@@ -169,6 +173,8 @@ namespace Slic3r
                 if (tray->second->is_tray_info_ready())
                 {
                     _parse_tray_info(ams_id, tray_id, ams_type, *(tray->second), info);
+                    if (ams_type == DevAmsType::ZMULTI_A || ams_type == DevAmsType::ZMULTI_B)
+                        info.id = tray_index;
                 }
 
                 //first: left,nozzle=1,map=1   second: right,nozzle=0,map=2

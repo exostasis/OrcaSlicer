@@ -200,7 +200,8 @@ void AmsMapingPopup::update(MachineObject* obj,
 // (DevAms::GetAmsType() for AMS trays, DevAmsType::EXT_SPOOL for the virtual/ext slots).
 static std::optional<TrayData> sGetTrayData(DevAmsTray* tray,
                                             const std::string& ams_id_str,
-                                            DevAmsType ams_type)
+                                            DevAmsType ams_type,
+                                            const DevAms* ams = nullptr)
 {
     int ams_id = 0;
     int tray_id = 0;
@@ -228,6 +229,11 @@ static std::optional<TrayData> sGetTrayData(DevAmsTray* tray,
         td.id = ams_id + tray_id;
     } else if(ams_type == DevAmsType::EXT_SPOOL){
         td.id = tray_id;
+    } else if (ams && (ams_type == DevAmsType::ZMULTI_A || ams_type == DevAmsType::ZMULTI_B)) {
+        // The AMS 3H uses its tray-presence bit as the tray id (28 + slot), as the sidebar does.
+        td.id = ams->GetTrayBitIndex(tray_id);
+        td.slot_label = ams_type == DevAmsType::ZMULTI_A ? wxString::Format("%d", tray_id + 1)
+                                                         : wxString::Format("2-%d", tray_id + 1);
     }
 
     if (ams_type != EXT_SPOOL && !tray->is_exists) {
@@ -294,7 +300,7 @@ void AmsMapingPopup::update_mapping_items(MachineObject* obj, const std::vector<
         std::vector<TrayData>                      tray_datas;
         std::map<std::string, DevAmsTray*>::const_iterator tray_iter;
         for (tray_iter = ams_group->GetTrays().cbegin(); tray_iter != ams_group->GetTrays().cend(); tray_iter++) {
-            const auto& td_opt = sGetTrayData(tray_iter->second, ams_group->GetAmsId(), ams_type);
+            const auto& td_opt = sGetTrayData(tray_iter->second, ams_group->GetAmsId(), ams_type, ams_group);
             if (td_opt.has_value()) {
                 tray_datas.push_back(td_opt.value());
             }
@@ -590,6 +596,8 @@ void AmsMapingPopup::add_ams_mapping(std::vector<TrayData> tray_data,
         if ((m_show_type == ShowType::LEFT_AND_RIGHT || m_show_type == ShowType::LEFT_AND_RIGHT_DYNAMIC)
             && (tray_data[i].id == VIRTUAL_TRAY_MAIN_ID || tray_data[i].id == VIRTUAL_TRAY_DEPUTY_ID)) {
             m_mapping_item->set_tray_index(tray_data[i].id == VIRTUAL_TRAY_MAIN_ID ? _L("Ext-R") : _L("Ext-L"));
+        } else if (!tray_data[i].slot_label.empty()) {
+            m_mapping_item->set_tray_index(tray_data[i].slot_label);
         } else {
             m_mapping_item->set_tray_index(wxGetApp().transition_tridid(tray_data[i].id));
         }
