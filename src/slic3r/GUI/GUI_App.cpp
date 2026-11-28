@@ -5361,6 +5361,8 @@ wxString GUI_App::transition_tridid(int trid_id) const
     if (trid_id >= 128 * 4) {
         trid_id -= 128 * 4;
         int id_index = trid_id / 4;
+        if (id_index >= int(std::size(maping_dict)))
+            return wxEmptyString;
         return wxString::Format("%s", maping_dict[id_index]);
     }
     else if (trid_id >= 0x80 && trid_id <= 0x87) { // n3s

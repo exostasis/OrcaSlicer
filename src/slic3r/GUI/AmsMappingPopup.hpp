@@ -84,7 +84,7 @@ enum ShowType {
 struct TrayData
 {
     TrayType        type;
-    int             id;
+    int             id = -1;
     int             ctype = 0;
     int             remain = MAPPING_ITEM_INVALID_REMAIN;
     std::string     name;
@@ -94,6 +94,7 @@ struct TrayData
 
     int             ams_id = 0;
     int             slot_id = 0;
+    wxString        slot_label; // overrides the label derived from id, e.g. for AMS 3H slots
 };
 
 class MaterialItem: public wxPanel
